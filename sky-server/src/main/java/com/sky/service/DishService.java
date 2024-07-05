@@ -6,6 +6,8 @@ import com.sky.result.PageResult;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 public interface DishService {
 
@@ -21,4 +23,10 @@ public interface DishService {
      * @return
      */
     PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO);
+
+    /**
+     * 菜品的批量删除
+     * @param ids
+     */
+    void deleteBatch(List<Long> ids);
 }
