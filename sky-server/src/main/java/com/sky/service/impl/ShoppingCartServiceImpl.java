@@ -42,6 +42,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     /**
      * 添加购物车
+     *
      * @param shoppingCartDTO
      */
     @Override
@@ -58,7 +59,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             ShoppingCart cart = list.get(0);
             cart.setNumber(cart.getNumber() + 1);
             shoppingCartMapper.updateNumberById(cart);
-        }else{
+        } else {
             // 如果不存在 则需要插入一条购物车数据
             // 判断本次添加到购物车的是菜品还是套餐
             Long dishId = shoppingCartDTO.getDishId();
@@ -69,7 +70,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 shoppingCart.setImage(dish.getImage());
                 shoppingCart.setAmount(dish.getPrice());
 
-            }else{
+            } else {
                 // 本次添加到购物车的是套餐
                 Long setmealId = shoppingCart.getSetmealId();
                 Setmeal setmeal = setmealMapper.getById(setmealId);
@@ -85,5 +86,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             shoppingCartMapper.insert(shoppingCart);
         }
 
+    }
+
+    @Override
+    public List<ShoppingCart> showShppingCart() {
+        // 获取当前微信用户的id
+        Long userId = BaseContext.getCurrentId();
+        ShoppingCart shoppingCart = ShoppingCart.builder()
+                .userId(userId)
+                .build();
+        List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
+        return list;
     }
 }
