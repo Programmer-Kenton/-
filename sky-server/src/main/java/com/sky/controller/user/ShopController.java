@@ -8,6 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * @Description 店铺相关接口
+ * @Version 1.0.0
+ * @Date 2024/7/10 12:49
+ * @Github https://github.com/Programmer-Kenton
+ * @Author Kenton
+ */
+
 @RestController("userShopController")
 @RequestMapping("/user/shop")
 @Api(tags = "店铺相关接口")
