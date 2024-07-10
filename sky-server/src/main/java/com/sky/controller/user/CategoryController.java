@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController("userCategoryController")
 @RequestMapping("/user/category")
-@Api(tags = "C端-分类接口")
+@Api(tags = "微信小程序-分类接口")
 public class CategoryController {
 
     @Autowired
