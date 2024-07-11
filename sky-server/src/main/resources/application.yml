@@ -63,3 +63,6 @@ sky:
     wechatPayCertFilePath: ${sky.wechat.wechatPayCertFilePath}
     notifyUrl: ${sky.wechat.notifyUrl}
     refundNotifyUrl: ${sky.wechat.refundNotifyUrl}
+
+  shop:
+    address: 天津市和平区滨江道鑫雅餐厅

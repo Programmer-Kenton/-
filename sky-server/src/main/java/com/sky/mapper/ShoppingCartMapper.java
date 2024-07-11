@@ -63,4 +63,6 @@ public interface ShoppingCartMapper {
      */
     void insertBatch(List<ShoppingCart> shoppingCartList);
 
+
+
 }
