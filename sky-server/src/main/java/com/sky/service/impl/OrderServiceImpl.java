@@ -19,6 +19,7 @@ import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.OrderSubmitVO;
 import com.sky.vo.OrderVO;
+import com.sky.websocket.WebSocketServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -62,6 +65,10 @@ public class OrderServiceImpl implements OrderService {
     private UserMapper userMapper;
 
     private Orders orders;
+
+    @Autowired
+    private WebSocketServer webSocketServer;
+
 
     /**
      * 用户下单
@@ -163,6 +170,18 @@ public class OrderServiceImpl implements OrderService {
         Integer OrderStatus = Orders.TO_BE_CONFIRMED;  //订单状态，待接单
         LocalDateTime check_out_time = LocalDateTime.now();//更新支付时间
         orderMapper.updateStatus(OrderStatus, OrderPaidStatus, check_out_time, this.orders.getId());
+
+
+        // 通过webSocket向客户端浏览器推送消息 type orderId content
+        Map map = new HashMap();
+        // 1表示来单提醒 2表示客户催单
+        map.put("type",1);
+        map.put("orderId",this.orders.getId());
+        map.put("content","订单号:" + this.orders.getNumber());
+
+        String json = JSONObject.toJSONString(map);
+        webSocketServer.sendToAllClient(json);
+
         return vo;
     }
 
@@ -186,6 +205,16 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         orderMapper.update(orders);
+
+        // 通过webSocket向客户端浏览器推送消息 type orderId content
+//        Map map = new HashMap();
+//        // 1表示来单提醒 2表示客户催单
+//        map.put("type",1);
+//        map.put("orderId",ordersDB.getId());
+//        map.put("content","订单号:" + outTradeNo);
+//
+//        String json = JSONObject.toJSONString(map);
+//        webSocketServer.sendToAllClient(json);
 
     }
 
