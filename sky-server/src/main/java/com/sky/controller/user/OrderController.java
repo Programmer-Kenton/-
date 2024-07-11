@@ -75,90 +75,54 @@ public class OrderController {
         return Result.success(pageResult);
     }
 
-//    /**
-//     * 查询订单详情
-//     * @param id
-//     * @return
-//     */
-//    @GetMapping("/orderDetail/{id}")
-//    @ApiOperation("查询订单详情")
-//    public Result<OrderVO> details(@PathVariable("id") Long id) {
-//        OrderVO orderVO = orderService.details(id);
-//        return Result.success(orderVO);
-//    }
-//
-//    /**
-//     * 用户取消订单
-//     *
-//     * @return
-//     */
-//    @PutMapping("/cancel/{id}")
-//    @ApiOperation("取消订单")
-//    public Result cancel(@PathVariable("id") Long id) throws Exception {
-//        orderService.userCancelById(id);
-//        return Result.success();
-//    }
-//
-//    /**
-//     * 再来一单
-//     *
-//     * @param id
-//     * @return
-//     */
-//    @PostMapping("/repetition/{id}")
-//    @ApiOperation("再来一单")
-//    public Result repetition(@PathVariable Long id) {
-//        orderService.repetition(id);
-//        return Result.success();
-//    }
-//
-//    /**
-//     * 客户催单
-//     * @param id
-//     * @return
-//     */
-//    @GetMapping("/reminder/{id}")
-//    @ApiOperation("客户催单")
-//    public Result reminder(@PathVariable("id") Long id){
-//        orderService.reminder(id);
-//        return Result.success();
-//    }
-//
-//    /**
-//     * 查询订单详情
-//     *
-//     * @param id
-//     * @return
-//     */
-//    @GetMapping("/orderDetail/{id}")
-//    @ApiOperation("查询订单详情")
-//    public Result<OrderVO> details(@PathVariable("id") Long id) {
-//        OrderVO orderVO = orderService.details(id);
-//        return Result.success(orderVO);
-//    }
-//
-//    /**
-//     * 用户取消订单
-//     *
-//     * @return
-//     */
-//    @PutMapping("/cancel/{id}")
-//    @ApiOperation("取消订单")
-//    public Result cancel(@PathVariable("id") Long id) throws Exception {
-//        orderService.userCancelById(id);
-//        return Result.success();
-//    }
-//
-//    /**
-//     * 再来一单
-//     *
-//     * @param id
-//     * @return
-//     */
-//    @PostMapping("/repetition/{id}")
-//    @ApiOperation("再来一单")
-//    public Result repetition(@PathVariable Long id) {
-//        orderService.repetition(id);
-//        return Result.success();
-//    }
+    /**
+     * 查询订单详情
+     * @param id
+     * @return
+     */
+    @GetMapping("/orderDetail/{id}")
+    @ApiOperation("查询订单详情")
+    public Result<OrderVO> details(@PathVariable("id") Long id) {
+        OrderVO orderVO = orderService.details(id);
+        return Result.success(orderVO);
+    }
+
+    /**
+     * 用户取消订单
+     *
+     * @return
+     */
+    @PutMapping("/cancel/{id}")
+    @ApiOperation("取消订单")
+    public Result cancel(@PathVariable("id") Long id) throws Exception {
+        orderService.userCancelById(id);
+        return Result.success();
+    }
+
+    /**
+     * 再来一单
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/repetition/{id}")
+    @ApiOperation("再来一单")
+    public Result repetition(@PathVariable Long id) {
+        orderService.repetition(id);
+        return Result.success();
+    }
+
+    /**
+     * 客户催单
+     * @param id
+     * @return
+     */
+    @GetMapping("/reminder/{id}")
+    @ApiOperation("客户催单")
+    public Result reminder(@PathVariable("id") Long id){
+        orderService.reminder(id);
+        return Result.success();
+    }
+
+
 }
